@@ -39,7 +39,7 @@ jobs:
         run: npm install
 
       - name: Zip and prepare for deployment
-        run: zip -r function.zip .
+        run: zip -r function.zip index.js src package.json node_modules
 
       - name: Deploy to AWS Lambda
         env:
