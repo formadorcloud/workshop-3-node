@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
-app.get('/status', (req, res) => {
- res.json({ status: 'API is working!' });
+
+// Middleware para parsear JSON
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.status(200).send('Bienvenido a la API');
 });
+
+app.get('/status', (req, res) => {
+  res.status(200).json({ status: 'API funcionando correctamente' });
+});
+
 module.exports = app;
