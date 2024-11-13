@@ -49,9 +49,13 @@ jobs:
         run: |
           aws lambda update-function-code --function-name api-node-student-mateo --zip-file fileb://function.zip
           
-      # Paso para enviar una notificación si ocurre un fallo en el despliegue
+  # Job de notificación en caso de fallo
+  notify_failure:
+    runs-on: ubuntu-latest
+    needs: [test, deploy]  # Se ejecuta después de ambos jobs
+    if: failure()  # Solo se ejecuta si cualquiera de los jobs anteriores falla
+    steps:
       - name: Send email notification on failure
-        if: failure()  # Solo ejecuta si el trabajo falla
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           TO_EMAIL: ${{ secrets.TO_EMAIL }}
@@ -64,11 +68,11 @@ jobs:
           -d '{
                 "personalizations": [{
                   "to": [{"email": "'$TO_EMAIL'"}],
-                  "subject": "GitHub Actions Job Failed: Deploy to Lambda"
+                  "subject": "GitHub Actions Job Failed"
                 }],
                 "from": {"email": "'$FROM_EMAIL'"},
                 "content": [{
                   "type": "text/plain",
-                  "value": "El flujo de trabajo en GitHub Actions falló durante el despliegue a Lambda. Por favor revisa los detalles en la pestaña de Actions en GitHub."
+                  "value": "El flujo de trabajo en GitHub Actions falló. Por favor revisa los detalles en la pestaña de Actions en GitHub."
                 }]
               }'
