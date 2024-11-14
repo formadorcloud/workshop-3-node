@@ -22,7 +22,7 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource: arn:aws:logs:*:*:*
-
+                
   MyLambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
@@ -32,3 +32,12 @@ Resources:
       Runtime: nodejs16.x
       Timeout: 30
       MemorySize: 128
+      Code:
+        ZipFile: |
+          exports.handler = async (event) => {
+              console.log("Hello, world!");
+              return {
+                  statusCode: 200,
+                  body: JSON.stringify("Hello, world!"),
+              };
+          };
