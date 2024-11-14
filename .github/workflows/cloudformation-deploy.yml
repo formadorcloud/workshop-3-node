@@ -27,4 +27,4 @@ jobs:
           aws cloudformation deploy \
             --template-file cf-resources-template.yaml \
             --stack-name workshop-3-student-mateo-stack \
-            --capabilities CAPABILITY_IAM
+            --capabilities CAPABILITY_NAMED_IAM
