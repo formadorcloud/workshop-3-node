@@ -49,4 +49,7 @@ Resources:
     Type: AWS::Lambda::Url
     Properties:
       AuthType: NONE
-      TargetFunctionArn: !GetAtt MyLambdaFunction.Arn
+      Permissions:
+        - Action: lambda:InvokeFunctionUrl
+          Principal: "*"
+          Resource: arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${MyLambdaFunction}
