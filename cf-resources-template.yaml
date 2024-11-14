@@ -56,7 +56,5 @@ Resources:
     Properties:
       Action: lambda:InvokeFunctionUrl
       FunctionName: !Ref MyLambdaFunction
+      FunctionUrlAuthType: 'NONE'
       Principal: "*"
-      Condition:
-        StringEquals:
-          lambda:FunctionUrlAuthType: "NONE"
