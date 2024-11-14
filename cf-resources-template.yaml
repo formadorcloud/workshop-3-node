@@ -49,6 +49,7 @@ Resources:
     Type: AWS::Lambda::Url
     Properties:
       AuthType: NONE
+      TargetFunctionArn: !GetAtt MyLambdaFunction.Arn
       
   MyLambdaFunctionInvokePermission:
     Type: AWS::Lambda::Permission
