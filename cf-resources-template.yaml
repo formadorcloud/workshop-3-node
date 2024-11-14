@@ -16,15 +16,15 @@ Resources:
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
-        - Effect: Allow
-          Action:
-            - logs:CreateLogGroup
-          Resource: arn:aws:logs:*:*:*
-        - Effect: Allow
-          Action:
-            - logs:CreateLogStream
-            - logs:PutLogEvents
-          Resource: arn:aws:logs:us-east-1:590183865524:log-group:/aws/lambda/cf-api-node-student-mateo:**
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                Resource: arn:aws:logs:*:*:*
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:us-east-1:590183865524:log-group:/aws/lambda/cf-api-node-student-mateo:**
                 
   MyLambdaFunction:
     Type: AWS::Lambda::Function
