@@ -56,4 +56,3 @@ Resources:
       Action: lambda:InvokeFunctionUrl
       FunctionName: !Ref MyLambdaFunction
       Principal: "*"
-      StatementId: AllowInvokeFunctionUrl
