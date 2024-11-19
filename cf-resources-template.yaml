@@ -3,6 +3,7 @@ Resources:
   MyLambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
+      Description: "Rol de ejecución para la función Lambda con permisos de CloudWatch Logs"
       RoleName: MyLambdaExecutionRole
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
@@ -29,6 +30,7 @@ Resources:
   MyLambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
+      Description: "Función Lambda para procesar solicitudes HTTP"
       FunctionName: cf-api-node-student-mateo
       Handler: index.handler
       Role: !GetAtt MyLambdaExecutionRole.Arn
@@ -48,6 +50,7 @@ Resources:
   MyLambdaFunctionUrl:
     Type: AWS::Lambda::Url
     Properties:
+      Description: "URL pública de la función Lambda"
       AuthType: NONE
       TargetFunctionArn: !GetAtt MyLambdaFunction.Arn
       
