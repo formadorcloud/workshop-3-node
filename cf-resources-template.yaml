@@ -50,7 +50,6 @@ Resources:
   MyLambdaFunctionUrl:
     Type: AWS::Lambda::Url
     Properties:
-      Description: "URL pública de la función Lambda"
       AuthType: NONE
       TargetFunctionArn: !GetAtt MyLambdaFunction.Arn
       
