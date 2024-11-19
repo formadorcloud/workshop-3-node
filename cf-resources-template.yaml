@@ -46,3 +46,17 @@ Resources:
                   body: JSON.stringify("Hello, world!"),
               };
           };
+
+  MyLambdaFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn: !GetAtt MyLambdaFunction.Arn
+      
+  MyLambdaFunctionInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName: !Ref MyLambdaFunction
+      FunctionUrlAuthType: 'NONE'
+      Principal: "*"
